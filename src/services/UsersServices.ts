@@ -21,7 +21,7 @@ class UsersServices {
 
         //delete user.password;
 
-        return { status: 201, user };
+        return { user };
 
     }
 
