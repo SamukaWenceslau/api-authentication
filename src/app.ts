@@ -11,4 +11,4 @@ app.use(express.json());
 app.use(router);
 
 
-app.listen(3000, () => console.log("🔥 Server started at http://localhost:3000"));
+export { app };
