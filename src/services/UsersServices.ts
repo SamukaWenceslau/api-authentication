@@ -1,8 +1,6 @@
 import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../repositories/UsersRepository";
 
-
-
 class UsersServices {
 
     async create(name: string, email: string, password: string) {

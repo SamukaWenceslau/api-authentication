@@ -7,9 +7,9 @@ class UsersController {
 
         const { name, email, password } = request.body;
 
-        const services = new UsersServices();
+        const usersServices = new UsersServices();
 
-        const res = await services.create(name, email, password);
+        const res = await usersServices.create(name, email, password);
 
         return response.status(201).json(res);
 
