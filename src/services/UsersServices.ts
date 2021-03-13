@@ -1,8 +1,24 @@
 import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../repositories/UsersRepository";
-import { PasswordTokenServices } from "./PasswordTokenServices";
+import PasswordTokenServices  from "./PasswordTokenServices";
+import bcrypt from "bcryptjs";
 
 class UsersServices {
+
+
+    async findByEmail(email: string) {
+
+        const usersRepository = getCustomRepository(UsersRepository);
+
+        const userExists = await usersRepository.findOne({ email });
+
+        if (userExists) {
+            return {status: true, user: userExists};
+        }else {
+            return {status: false};
+        }
+
+    }
 
     async create(name: string, email: string, password: string) {
 
@@ -10,9 +26,9 @@ class UsersServices {
 
             const usersRepository = getCustomRepository(UsersRepository);
 
-            const userExists = await usersRepository.findOne({ email });
+            const userExists = await this.findByEmail(email);
 
-            if (userExists) {
+            if (userExists.status) {
                 return { message: "User already exists!" };
             }
 
@@ -20,9 +36,7 @@ class UsersServices {
 
             const { id } = await usersRepository.save(user);
 
-            const passwordTokenServices = new PasswordTokenServices()
-
-            const passwordToken = await passwordTokenServices.create(id);
+            const passwordToken = await PasswordTokenServices.create(id);
 
             delete user.password;
 
@@ -35,6 +49,29 @@ class UsersServices {
 
     }
 
+    async updatePassword(newPassword: string, token: string) {
+
+        const usersRepository = getCustomRepository(UsersRepository);
+
+        const isTokenValid = await PasswordTokenServices.validate(token);
+
+        if(isTokenValid.status) {
+
+            const hashPassword = bcrypt.hashSync(newPassword, 10);
+
+            await usersRepository.update(isTokenValid.token.user_id, {password: hashPassword});
+
+            await PasswordTokenServices.update(isTokenValid.token.id);
+
+            return {message: "Update password!"};
+
+        }else {
+            
+            return {message: "Token invalid!"};
+
+        }
+    }
+
 }
 
-export { UsersServices };
+export default new UsersServices();

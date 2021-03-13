@@ -1,0 +1,39 @@
+ <style>
+    .container {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    .content {
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+        padding: 0 10%;
+        max-width: 500px;
+    }
+
+    .btn{
+    display: block;
+    border: none;
+    border-radius: 5px;
+    background-color: #0d6efd;
+    color: white;
+    padding: 15px 30px;
+    margin-top: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    }
+</style>
+
+<div class="container">
+    <div class="content">
+        <h2>Forgot your password</h2>
+        <p>Click this button and you will be redirected to a page to change your password.</p>
+    
+        <a href="{{link}}/changepassword?t={{token}}" target="_blank" rel="noopener noreferrer" class="btn">Forgot password</a>
+    </div>
+</div>
