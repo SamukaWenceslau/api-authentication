@@ -13,7 +13,7 @@ class UsersController {
 
     }
 
-    async updatePassword(request: Request, response: Response) {
+    async update(request: Request, response: Response) {
 
         const { newPassword } = request.body;
         const { t } = request.query;
@@ -27,4 +27,4 @@ class UsersController {
     
 }
 
-export { UsersController };
+export default new UsersController();

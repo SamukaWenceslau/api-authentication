@@ -32,4 +32,4 @@ class SendMailController {
 
 }
 
-export { SendMailController };
+export default new SendMailController();

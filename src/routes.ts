@@ -1,14 +1,17 @@
 import { Router } from "express";
-import { SendMailController } from "./controllers/SendMailController";
-import { UsersController } from "./controllers/UsersController";
+
+//controllers
+import AuthController from "./controllers/AuthController";
+import UsersController from "./controllers/UsersController";
+import SendMailController from "./controllers/SendMailController";
 
 const router = Router();
-const usersController = new UsersController();
-const sendMailController = new SendMailController();
 
-router.post("/user", usersController.create)
-      .post("/user/forgotpassword", sendMailController.execute)
-      .post("/user/changepassword", usersController.updatePassword)
+
+router.post("/user", UsersController.create)
+      .put("/user/forgotpassword", UsersController.update)     
+      .post("/user/forgotpassword", SendMailController.execute)
+      .post("/login", AuthController.authenticate)
 
 
 export { router };
