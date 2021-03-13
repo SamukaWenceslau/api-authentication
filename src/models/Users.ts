@@ -20,7 +20,7 @@ class User {
     @BeforeInsert()
     @BeforeUpdate()
     hashPassoword() {
-        this.password = bcrypt.hashSync(this.password, 10);
+        this.password = bcrypt.hashSync(this.password, Number(process.env.SALT));
     }
 
     constructor() {

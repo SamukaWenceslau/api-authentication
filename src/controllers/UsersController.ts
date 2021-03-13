@@ -1,7 +1,21 @@
 import { Request, Response } from "express";
+import { getCustomRepository } from "typeorm";
+import { UsersRepository } from "../repositories/UsersRepository";
 import UsersServices  from "../services/UsersServices";
 
 class UsersController {
+
+    async show(request: Request, response: Response) {
+
+        const usersRepository = getCustomRepository(UsersRepository);
+
+        const user = await usersRepository.findOne({id: request.userId});
+
+        delete user.password
+
+        return response.json(user);
+
+    }
 
     async create(request: Request, response: Response) {
 

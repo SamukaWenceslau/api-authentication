@@ -57,7 +57,7 @@ class UsersServices {
 
         if(isTokenValid.status) {
 
-            const hashPassword = bcrypt.hashSync(newPassword, 10);
+            const hashPassword = bcrypt.hashSync(newPassword, Number(process.env.SALT));
 
             await usersRepository.update(isTokenValid.token.user_id, {password: hashPassword});
 
