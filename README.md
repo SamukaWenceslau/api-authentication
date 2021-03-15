@@ -12,6 +12,10 @@ Esta API é responsável por fazer autenticação, registro de usuário e recupe
 
 1. Faça um clone desse repositório na sua máquina;
 
+	```bash
+		git clone https://github.com/SamukaWenceslau/api-authetication.git
+	```
+
 2. Após clonar o repositório, navegue até a pasta `/api-authentication` e instale as dependências do projeto;
 
 	```bash
