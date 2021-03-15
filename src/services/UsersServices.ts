@@ -5,42 +5,27 @@ import bcrypt from "bcryptjs";
 
 class UsersServices {
 
-
-    async findByEmail(email: string) {
-
-        const usersRepository = getCustomRepository(UsersRepository);
-
-        const userExists = await usersRepository.findOne({ email });
-
-        if (userExists) {
-            return {status: true, user: userExists};
-        }else {
-            return {status: false};
-        }
-
-    }
-
     async create(name: string, email: string, password: string) {
 
         try {
 
-            const usersRepository = getCustomRepository(UsersRepository);
+            const userRepository = getCustomRepository(UsersRepository);
 
-            const userExists = await this.findByEmail(email);
+            const userExists = await userRepository.findByEmail(email);
 
             if (userExists.status) {
-                return { message: "User already exists!" };
+                return { status: 406, message: "User already exists!" };
             }
 
-            const user = usersRepository.create({ name, email, password });
+            const user = userRepository.create({ name, email, password });
 
-            const { id } = await usersRepository.save(user);
+            const { id } = await userRepository.save(user);
 
-            const passwordToken = await PasswordTokenServices.create(id);
+            await PasswordTokenServices.create(id);
 
             delete user.password;
 
-            return { user, passwordToken };
+            return { status: 201, message: "Successfully user has been created"};
 
         } catch (error) {
             console.log(error);
@@ -63,11 +48,11 @@ class UsersServices {
 
             await PasswordTokenServices.update(isTokenValid.token.id);
 
-            return {message: "Update password!"};
+            return {status: 200, message: "Update password!"};
 
         }else {
             
-            return {message: "Token invalid!"};
+            return {status: 406, message: "Token invalid!"};
 
         }
     }

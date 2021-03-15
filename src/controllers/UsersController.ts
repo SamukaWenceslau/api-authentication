@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../repositories/UsersRepository";
-import UsersServices  from "../services/UsersServices";
+import UsersServices from "../services/UsersServices";
 
 class UsersController {
 
@@ -9,11 +9,11 @@ class UsersController {
 
         const usersRepository = getCustomRepository(UsersRepository);
 
-        const user = await usersRepository.findOne({id: request.userId});
+        const user = await usersRepository.findOne({ id: request.userId });
 
         delete user.password
 
-        return response.json(user);
+        return response.status(200).json(user);
 
     }
 
@@ -23,7 +23,7 @@ class UsersController {
 
         const res = await UsersServices.create(name, email, password);
 
-        return response.status(201).json(res);
+        return response.status(res.status).json({message: res.message});
 
     }
 
@@ -34,11 +34,10 @@ class UsersController {
 
         const res = await UsersServices.updatePassword(newPassword, String(t));
 
-        return response.json(res);
-
+        return response.status(res.status).json({message: res.message});
     }
 
-    
+
 }
 
 export default new UsersController();

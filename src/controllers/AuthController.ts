@@ -9,10 +9,9 @@ class AuthController {
 
         const signUp = await AuthServices.authenticate(email, password);
 
-        return response.json(signUp);
+        return response.status(signUp.status).json(signUp);
 
     }
-
 
 }
 

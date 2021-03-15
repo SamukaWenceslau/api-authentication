@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
 interface TokenPayLoad {
@@ -12,7 +12,7 @@ export default function authMiddleware(
 ) {
     const { authorization } = request.headers;
 
-    if(!authorization) {
+    if (!authorization) {
         return response.sendStatus(401);
     }
 
@@ -25,8 +25,8 @@ export default function authMiddleware(
         request.userId = id;
 
         return next();
-        
+
     } catch {
-        return response.sendStatus(401);
+        return response.status(401).json({ message: "Login required" });
     }
 }

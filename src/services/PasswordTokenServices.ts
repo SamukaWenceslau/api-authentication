@@ -1,21 +1,10 @@
 import { getCustomRepository } from "typeorm";
 import { PasswordTokenRepository } from "../repositories/PasswordTokenRepository";
-import {v4 as uuid} from "uuid";
-//import UsersServices from "./UsersServices";
+import { v4 as uuid } from "uuid";
 
 
 class PasswordTokenServices {
-
-    async findByToken(id: string) {
-
-        const ptRepository = getCustomRepository(PasswordTokenRepository);
-
-        const  { token } = await ptRepository.findOne({ user_id: id });
-
-        return token;
-
-    }
-
+    
     async validate(token: string) {
 
         const ptRepository = getCustomRepository(PasswordTokenRepository);
@@ -38,15 +27,13 @@ class PasswordTokenServices {
 
         await ptRepository.save(UserPasswordToken);
 
-        return { UserPasswordToken };
-
     }
 
     async update(id: string) {
 
         const ptRepository = getCustomRepository(PasswordTokenRepository);
 
-        await ptRepository.update(id, {token: uuid()});
+        await ptRepository.update(id, { token: uuid() });
 
     }
 

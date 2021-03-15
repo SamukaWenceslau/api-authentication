@@ -9,12 +9,16 @@ import SendMailController from "./controllers/SendMailController";
 
 const router = Router();
 
-
+// User routes
 router.get("/user", authMiddleware, UsersController.show)
-      .post("/user", UsersController.create)
-      .put("/user/forgotpassword", UsersController.update)     
-      .post("/user/forgotpassword", SendMailController.execute)
-      .post("/login", AuthController.authenticate)
+router.post("/user", UsersController.create)
+router.put("/user/forgotpassword", UsersController.update)     
+
+// SendMail routes
+router.post("/user/forgotpassword", SendMailController.execute)
+
+// Auth routes
+router.post("/login", AuthController.authenticate)
 
 
 export { router };
