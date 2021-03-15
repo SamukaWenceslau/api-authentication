@@ -22,9 +22,9 @@ Caso essa respostas aconteça, irá receber as informações do usuário autenti
 
 ```JSON
 {
-	"id":  "[USER_ID]",
-	"name":  "User",
-	"email":  "user@mail.com"
+"id":  "[USER_ID]",
+"name":  "User",
+"email":  "user@mail.com"
 }
 ```
 ## POST /login
@@ -37,8 +37,8 @@ Este **endpoint** é responsável por autenticar o usuário.
 
 ```JSON
 {
-	"email": "user@mail.com",
-	"password": "user_password"
+"email": "user@mail.com",
+"password": "user_password"
 }
 ```
 ### Response
@@ -51,8 +51,8 @@ Caso essa respostas aconteça, irá receber uma mensagem de sucesso e o token JW
 
 ```JSON
 {
-	"message":  "Successful authentication!",
-	"token":  "[JWT_TOKEN]"
+"message":  "Successful authentication!",
+"token":  "[JWT_TOKEN]"
 }
 ```
   
@@ -67,12 +67,12 @@ Caso essa respostas aconteça, irá receber uma mensagem de erro, podem ser de 2
 
 ```JSON
 {
-	"message":  "Incorrect password"
+"message":  "Incorrect password"
 }
 ```
 ```JSON
 {
-	"message":  "User doesn't exist"
+"message":  "User doesn't exist"
 }
 ```
 
@@ -86,9 +86,9 @@ Este **endpoint** é responsável por registrar um novo usuário, se o e-mail j�
 
 ```JSON
 {
-	"name": "user",
-	"email": "user@mail.com",
-	"password": "user_password"
+"name": "user",
+"email": "user@mail.com",
+"password": "user_password"
 }
 ```
 ### Response
@@ -101,7 +101,7 @@ Caso essa respostas aconteça, irá receber uma mensagem de sucesso.
 
 ```JSON
 {
-	"message":  "Successfully user has been created"
+"message":  "Successfully user has been created"
 }
 ```
   
@@ -113,7 +113,7 @@ Caso essa respostas aconteça, irá receber uma mensagem de erro.
 
 ```JSON
 {
-	"message":  "User already exists!"
+"message":  "User already exists!"
 }
 ```
 
@@ -127,7 +127,7 @@ Este **endpoint** é responsável pegar o e-mail de recuperação, validar e env
 
 ```JSON
 {
-	"email": "user@mail.com",
+"email": "user@mail.com",
 }
 ```
 ### Response
@@ -140,8 +140,8 @@ Caso essa respostas aconteça, irá receber uma mensagem de sucesso e um link pa
 
 ```JSON
 {
-	"message":  "Successfully email has been sent",
-	"url":  "https://ethereal.email/message/YE-fmm-3nSO.8gNXYE-in.vKCX9p.b7yAAAAAQX8SbbW0repXF0Pe0AB7Pg"
+"message":  "Successfully email has been sent",
+"url":  "https://ethereal.email/message/YE-fmm-3nSO.8gNXYE-in.vKCX9p.b7yAAAAAQX8SbbW0repXF0Pe0AB7Pg"
 }
 ```
   
@@ -153,7 +153,7 @@ Caso essa respostas aconteça, irá receber uma mensagem de erro, pois o e-mail 
 
 ```JSON
 {
-	"message": "User doesn't exist!"
+"message": "User doesn't exist!"
 }
 ```
 ## PUT /user/forgotpassword
@@ -168,7 +168,7 @@ Este **endpoint** é responsável por redefinir a senha do usuário.
 
 ```JSON
 {
-	"email": "user@mail.com",
+"email": "user@mail.com",
 }
 ```
 
@@ -189,7 +189,7 @@ Caso essa respostas aconteça, irá receber uma mensagem de sucesso.
 
 ```JSON
 {
-	"message":  "Update password!"
+"message":  "Update password!"
 }
 ```
   
@@ -201,6 +201,6 @@ Caso essa respostas aconteça, irá receber uma mensagem de erro.
 
 ```JSON
 {
-	"message":  "Token invalid!"
+"message":  "Token invalid!"
 }
 ```
